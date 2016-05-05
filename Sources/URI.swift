@@ -102,7 +102,9 @@ extension URI {
     }
 
     @inline(__always) private static func getSubstring(_ string: String, start: UInt16, end: UInt16) -> String {
-        return string[string.startIndex.advanced(by: Int(start)) ..< string.startIndex.advanced(by: Int(end))]
+        let startIndex = string.index(string.startIndex, offsetBy: Int(start))
+        let endIndex = string.index(string.startIndex, offsetBy: Int(end))
+        return string[startIndex ..< endIndex]
     }
 
     @inline(__always) private static func parse(userInfoString: String) -> URI.UserInfo? {
